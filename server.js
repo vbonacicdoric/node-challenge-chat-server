@@ -61,7 +61,7 @@ app.delete("/messages/:messageId", (req, res) => {
 app.put("/messages/:id", (req, res) => {
         const id = Number(req.params.id)
         const message = messages.find(message => id === message.id)
-        if (message) {
+        if (message && req.body.text && req.body.from) {
           message.text = req.body.text;
           message.from = req.body.from;
           res.send({
